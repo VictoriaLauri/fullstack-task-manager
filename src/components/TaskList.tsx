@@ -15,7 +15,7 @@ export function TaskList({
   tasks,
   onToggleComplete,
   onDelete,
-  emptyMessage = "Let's start by adding your first task!",
+  emptyMessage = "No tasks here. Add one above!",
 }: TaskListProps) {
   if (tasks.length === 0) {
     return (
