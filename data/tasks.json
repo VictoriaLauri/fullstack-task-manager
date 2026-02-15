@@ -1,37 +1,72 @@
 [
   {
-    "id": "4714a97f-b484-4c01-abf1-ec9574dfd3aa",
-    "title": "pick up kids from home",
+    "id": "2598583b-afde-4820-a8f7-32a21f0a1e2c",
+    "title": "Review React hooks (useState, useEffect, useMemo)",
     "completed": false,
-    "createdAt": "2026-02-15T09:16:39.851Z",
-    "priority": "high"
-  },
-  {
-    "id": "76bbda44-a9d9-4157-b294-67a8ad955bcb",
-    "title": "groceries from tesco",
-    "completed": false,
-    "createdAt": "2026-02-15T09:16:50.954Z",
+    "createdAt": "2026-02-15T18:23:57.517Z",
     "priority": "medium"
   },
   {
-    "id": "73c0e330-c2b6-4680-9906-8309b484424d",
-    "title": "take trash out",
+    "id": "9b64cc56-37f1-4af9-bdcc-3eb533eebfdf",
+    "title": "Practice coding a small React form with validation",
     "completed": false,
-    "createdAt": "2026-02-15T09:17:04.173Z",
+    "createdAt": "2026-02-15T18:24:10.617Z",
+    "priority": "high"
+  },
+  {
+    "id": "2df09e50-c016-442c-bbea-db2e16036fdf",
+    "title": "Prepare 3 STAR interview answers for “Tell me about a project”",
+    "completed": false,
+    "createdAt": "2026-02-15T18:24:37.549Z",
+    "priority": "high"
+  },
+  {
+    "id": "bd17bb53-2020-4619-99a1-59141cad0665",
+    "title": "Read “Thinking in React” on the React docs",
+    "completed": false,
+    "createdAt": "2026-02-15T18:24:49.632Z",
     "priority": "low"
   },
   {
-    "id": "c9bc45dd-5005-4d58-ad1d-1132ce932185",
-    "title": "come back home",
+    "id": "80c0e188-0307-4f04-85f4-8f2eb7ecccd5",
+    "title": "Build a tiny todo app to show in portfolio",
     "completed": true,
-    "createdAt": "2026-02-15T16:11:28.148Z",
+    "createdAt": "2026-02-15T18:25:01.641Z",
     "priority": "high"
   },
   {
-    "id": "b01bbd62-591f-4f69-aba5-6ac6ce29e90f",
-    "title": "wgive Evelyn some food",
+    "id": "f3b14073-bc0b-4ea0-b767-bfd90450b00f",
+    "title": "Study common JavaScript interview questions (closures, async)",
     "completed": false,
-    "createdAt": "2026-02-15T17:19:04.876Z",
+    "createdAt": "2026-02-15T18:25:20.574Z",
     "priority": "medium"
+  },
+  {
+    "id": "a3ce98f0-bec0-4226-8704-08b8a2d8d2ef",
+    "title": "Update LinkedIn and CV with latest project",
+    "completed": false,
+    "createdAt": "2026-02-15T18:25:40.892Z",
+    "priority": "medium"
+  },
+  {
+    "id": "2b60516e-c98b-4057-82c3-bf166d941b68",
+    "title": "Do one LeetCode or similar easy problem",
+    "completed": false,
+    "createdAt": "2026-02-15T18:25:51.922Z",
+    "priority": "low"
+  },
+  {
+    "id": "0dd9991f-87d4-42fc-8801-96450b9ac61c",
+    "title": "Write down questions to ask interviewers",
+    "completed": false,
+    "createdAt": "2026-02-15T18:26:02.527Z",
+    "priority": "medium"
+  },
+  {
+    "id": "dc4eecae-5103-4075-85d9-4a92fb7a6b25",
+    "title": "Create a node / express API",
+    "completed": true,
+    "createdAt": "2026-02-15T18:28:35.480Z",
+    "priority": "high"
   }
 ]

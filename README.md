@@ -1,112 +1,70 @@
-# 🧪 JavaScript Developer Technical Test
+# Task Manager
 
-**Estimated Time:** ~2 hours  
-**Stack:** React · TypeScript · Node.js · Express.js  
-**Node Version:** 22.22.0 (see `.nvmrc`)
+A full-stack **Task Manager** with a React/TypeScript frontend and Node.js/Express backend. Add tasks with a priority, filter and sort your list, edit or complete items, and keep your preferences across refreshes. Built for clarity and accessibility.
 
----
-
-## 👋 Welcome
-
-This test is designed to give you a chance to show us how you think and build. There are no trick questions — we're genuinely interested in how you approach problems, how you structure your code, and how you handle the unexpected. Feel free to be creative!
+**Who it’s for:** Anyone who wants a simple, keyboard-friendly task list in the browser — and developers or recruiters viewing the repo as a demo of a React + Express app.
 
 ---
 
-## 📋 What You'll Be Building
+## Screenshots
 
-A simple **Task Manager App** — a full-stack mini application with a React/TypeScript frontend and a Node.js/Express backend.
+### Main view
 
-Don't worry about making it look beautiful (though that's a bonus!) — we care more about how your code works and how you've structured it.
+![Task list overview](./assets/app-overview.png)
 
----
+### Filters and list
 
-## 🗂 Project Structure
+![Filters and task list](./assets/filters-list.png)
 
-```
-tf-react-tech-test/
-├── src/
-│   ├── App.tsx              ← Main React component — start here for the frontend
-│   ├── types.ts             ← Shared TypeScript types — extend these as needed
-│   ├── api.ts               ← API helper functions — already wired up
-│   └── main.tsx             ← React entry point (no changes needed)
-├── server/
-│   └── index.ts             ← Express server — start here for the backend
-├── public/
-│   └── index.html
-├── tsconfig.app.json        ← TypeScript config for the frontend
-├── tsconfig.server.json     ← TypeScript config for the backend
-├── package.json
-├── .nvmrc                   ← Node version (22.22.0)
-└── README.md
-```
+*Add your screengrabs to the `assets/` folder as `app-overview.png` and `filters-list.png`, or update the paths above to match your filenames.*
 
 ---
 
-## ✅ Tasks
+## Key features
 
-The app is **fully working** out of the box — once you run `npm start` you'll see a basic task manager in your browser connected to a live Express backend. Your job is to extend it.
-
-### Part 1 — Backend (Express + Node.js) ~45 mins
-
-Open `server/index.ts`. The four core routes are already implemented. Now make them better:
-
-- Add a `priority` field (`low` / `medium` / `high`) to tasks
-- Add a query param to filter tasks: `GET /api/tasks?priority=high` or `?completed=true`
-- Improve validation — what should happen if someone sends an empty title?
-- Add any other fields or endpoints you think would be useful
-
-> 💡 **Tip:** The `Task` interface and in-memory store are defined at the top of the file — extend them from there.
+- **Tasks with priority** — Create tasks with Low, Medium, or High priority; shown as coloured badges and subtle card borders.
+- **Filter by status and priority** — Status: All / Active / Completed. Priority: All / High / Medium / Low.
+- **Sort options** — Priority first, Newest first, or Oldest first; priority sort puts active high-priority tasks at the top.
+- **Add, edit, complete, delete** — Inline edit for title and priority on active tasks; complete/undo and delete with immediate UI updates.
+- **Persisted preferences** — Filter and sort choices are saved in `localStorage` and restored on refresh; task data stays on the server.
+- **Task count** — Live count of visible tasks (e.g. “3 tasks”) with screen-reader-friendly updates.
+- **Reset preferences** — One-click reset to “all tasks, newest first” without changing task data.
+- **Backend persistence** — Tasks stored in `data/tasks.json` so they survive server restarts.
+- **Validation** — Title length cap (500 chars), required priority on create/update, and clear API error messages.
+- **Accessibility** — Semantic layout (header, main, list), skip-to-content link, visible focus rings, WCAG-oriented contrast, and sufficient touch targets.
 
 ---
 
-### Part 2 — Frontend (React + TypeScript) ~45 mins
+## Tech stack
 
-Open `src/App.tsx`. The basic UI renders tasks and connects to the API. Make it genuinely useful:
-
-- Show task priority visually (colour, badge, icon — your choice)
-- Add a priority selector when creating a task
-- Add filtering or sorting (e.g. show only completed, sort by priority)
-- Improve the styling — make it look like something you'd actually want to use
-
-**Requirements:**
-- Use TypeScript properly — no `any` types please!
-- Keep using the types in `src/types.ts` — extend them if needed
-- Keep API calls going through `src/api.ts`
-
-> 💡 **Tip:** Feel free to create new component files under `src/` — you're not limited to `App.tsx`.
+- **Frontend:** React 18, TypeScript, Vite, Tailwind CSS v4  
+- **Backend:** Node.js, Express  
+- **Node:** 22.22.0 (see `.nvmrc`)
 
 ---
 
-### Part 3 — Your Call (~30 mins)
+## How to run
 
-Pick **one** of the following, or come up with your own idea:
-
-- **Optimistic UI updates** — update the UI before the server responds, roll back on error
-- **Persistence** — save tasks to `localStorage` so they survive a page refresh
-- **Filtering UI** — a proper filter bar (All / Active / Completed / by Priority)
-- **Something else entirely** — surprise us! Just tell us what and why in your `NOTES.md`
-
----
-
-## 🚀 Getting Started
+**Prerequisites:** Node 22.22.0. Use [nvm](https://github.com/nvm-sh/nvm) (or volta / asdf / fnm with `.node-version`).
 
 ```bash
-# 1. Switch to the correct Node version (requires nvm)
-nvm install   # installs 22.22.0 from .nvmrc
-nvm use       # switches to 22.22.0
+# 1. Use the correct Node version (with nvm)
+nvm install
+nvm use
 
 # 2. Install dependencies
 npm install
 
-# 3. Run both frontend and backend together
+# 3. Run frontend and backend together
 npm start
 ```
 
-This will start:
-- **Frontend** (React + Vite) at `http://localhost:5173`
-- **Backend** (Express) at `http://localhost:3001`
+This starts:
 
-Or run them separately in two terminals:
+- **Frontend** (React + Vite) at [http://localhost:5173](http://localhost:5173)
+- **Backend** (Express) at [http://localhost:3001](http://localhost:3001)
+
+**Run frontend and backend separately:**
 
 ```bash
 # Terminal 1 — backend
@@ -116,25 +74,25 @@ npm run server
 npm run dev
 ```
 
-> ⚠️ **Node version:** This project requires **Node 22.22.0**. The `.nvmrc` file handles this automatically if you use [nvm](https://github.com/nvm-sh/nvm). If you use a different version manager (volta, asdf, fnm), a `.node-version` file is also included.
-
 ---
 
-## 📝 Please Create a NOTES.md File
+## Project structure
 
-When you're done, add a `NOTES.md` to the root with a few sentences covering:
-
-1. What you built and any decisions you made
-2. What you'd improve with more time
-3. Anything you found tricky or interesting
-
-This helps us understand your thinking — it's just as important as the code!
-
----
-
-## 📦 Submitting
-
-Push your completed code to a **public GitHub repository** and send us the link.
-
-Good luck — we're rooting for you! 🎉
-# tf-react-tech-test
+```text
+tf-react-tech-test/
+├── src/
+│   ├── App.tsx           # Main app state, filter/sort, API handlers
+│   ├── api.ts            # API client (getTasks, createTask, updateTask, deleteTask)
+│   ├── types.ts          # Task, NewTask, UpdateTask, Priority
+│   ├── main.tsx          # React entry
+│   ├── index.css         # Tailwind + theme
+│   └── components/       # AppLayout, AddTaskForm, TaskList, TaskItem, PriorityBadge, Button, Input, Select
+├── server/
+│   └── index.ts          # Express API and JSON file store
+├── data/
+│   └── tasks.json        # Persisted tasks (created at runtime)
+├── assets/               # Screengrabs for this README
+├── package.json
+├── .nvmrc                # Node 22.22.0
+└── README.md
+```

@@ -1,3 +1,7 @@
+# Notes
+
+(created in the same order as the build progressed)
+
 Notes on Part 1 - Backend
 
 1. **Add a priority field (low / medium / high) to tasks**
