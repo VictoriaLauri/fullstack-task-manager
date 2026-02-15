@@ -5,6 +5,8 @@
 import { useState, useEffect } from 'react';
 import { Task } from './types';
 import { getTasks, createTask, updateTask, deleteTask } from './api';
+import { AppLayout } from './components/AppLayout';
+import { Button } from './components/Button';
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -46,13 +48,23 @@ function App() {
     setTasks((prev) => prev.filter((t) => t.id !== id));
   };
 
-  if (loading) return <p>Loading tasks...</p>;
-  if (error) return <p style={{ color: 'red' }}>{error}</p>;
+  if (loading) {
+    return (
+      <AppLayout>
+        <p>Loading tasks...</p>
+      </AppLayout>
+    );
+  }
+  if (error) {
+    return (
+      <AppLayout>
+        <p className="text-danger-600" role="alert">{error}</p>
+      </AppLayout>
+    );
+  }
 
   return (
-    <div style={{ maxWidth: 600, margin: '0 auto', padding: 24 }}>
-      <h1>Task Manager</h1>
-
+    <AppLayout>
       {/* TODO: Improve this input — add priority, labels, due date, etc. */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 24 }}>
         <input
@@ -61,7 +73,7 @@ function App() {
           onChange={(e) => setNewTaskTitle(e.target.value)}
           placeholder="Add a new task..."
         />
-        <button onClick={handleAddTask}>Add</button>
+        <Button onClick={handleAddTask}>Add</Button>
       </div>
 
       {/* TODO: Style this list — make it your own! */}
@@ -74,15 +86,15 @@ function App() {
               <span style={{ textDecoration: task.completed ? 'line-through' : 'none', flex: 1 }}>
                 {task.title}
               </span>
-              <button onClick={() => handleToggleComplete(task)}>
+              <Button variant="secondary" onClick={() => handleToggleComplete(task)}>
                 {task.completed ? 'Undo' : 'Complete'}
-              </button>
-              <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
+              </Button>
+              <Button variant="danger" onClick={() => handleDeleteTask(task.id)}>Delete</Button>
             </li>
           ))}
         </ul>
       )}
-    </div>
+    </AppLayout>
   );
 }
 

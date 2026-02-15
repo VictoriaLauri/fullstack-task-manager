@@ -30,3 +30,11 @@ Notes on Part 1 - Backend
 6. **Global error handler**
    - A central error middleware catches any unhandled errors (e.g. thrown in a route) and responds with **500** and `{ error: "Internal server error" }` in JSON.
    - **Why:** Without it, Express would send its default HTML 500 page on unexpected errors. The handler keeps the API contract consistent (always JSON, same `error` shape), avoids leaking stack traces or internals to the client, and logs the error on the server for debugging.
+
+---
+
+Notes on Part 2 — Frontend
+
+- **AppLayout component:** We introduced a layout component (`src/components/AppLayout.tsx`) that wraps the page in semantic `<header>` and `<main>`, provides a skip-to-content link for keyboard users, and applies the mobile-first container (max-width, padding). We chose it so the shell (landmarks, a11y, layout) lives in one place, loading and error states get the same structure, and `App.tsx` can focus on task logic instead of repeated layout markup.
+
+- **Tailwind and accessibility:** Tailwind v4 with `@theme` in `src/index.css` defines a single palette (primary blue, accent green, danger red, surface grey) so we don’t repeat colours. Palette and surface are chosen for **WCAG 2 Level AA** contrast (e.g. primary-600/700 on white) and a **dyslexia-friendly** light grey background (`--color-surface`) instead of pure white. Components use visible focus rings, sufficient touch targets (e.g. 44px min), and semantic structure; layout includes a skip-to-content link.
