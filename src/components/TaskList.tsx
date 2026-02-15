@@ -1,11 +1,12 @@
 // TaskList — semantic list of TaskItems with empty state.
 
-import type { Task } from '../types';
+import type { Task, UpdateTask } from '../types';
 import { TaskItem } from './TaskItem';
 
 interface TaskListProps {
   tasks: Task[];
   onToggleComplete: (task: Task) => void;
+  onUpdate: (id: string, updates: UpdateTask) => void | Promise<void>;
   onDelete: (id: string) => void;
   /** Message when there are no tasks. */
   emptyMessage?: string;
@@ -14,6 +15,7 @@ interface TaskListProps {
 export function TaskList({
   tasks,
   onToggleComplete,
+  onUpdate,
   onDelete,
   emptyMessage = "No tasks here. Add one above!",
 }: TaskListProps) {
@@ -32,6 +34,7 @@ export function TaskList({
           key={task.id}
           task={task}
           onToggleComplete={onToggleComplete}
+          onUpdate={onUpdate}
           onDelete={onDelete}
         />
       ))}

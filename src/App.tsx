@@ -7,7 +7,7 @@ import { createTask, deleteTask, getTasks, updateTask } from './api'
 import { AddTaskForm } from './components/AddTaskForm'
 import { AppLayout } from './components/AppLayout'
 import { TaskList } from './components/TaskList'
-import type { NewTask, Priority, Task } from './types'
+import type { NewTask, Priority, Task, UpdateTask } from './types'
 
 type CompletedFilter = 'all' | 'active' | 'completed'
 type PriorityFilter = 'all' | Priority
@@ -86,9 +86,13 @@ function App() {
     setTasks((prev) => [...prev, task])
   }
 
-  // TODO: Expand this if you add extra fields to update
   const handleToggleComplete = async (task: Task) => {
     const updated = await updateTask(task.id, { completed: !task.completed })
+    setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)))
+  }
+
+  const handleUpdateTask = async (id: string, updates: UpdateTask) => {
+    const updated = await updateTask(id, updates)
     setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)))
   }
 
@@ -96,6 +100,17 @@ function App() {
   const handleDeleteTask = async (id: string) => {
     await deleteTask(id)
     setTasks((prev) => prev.filter((t) => t.id !== id))
+  }
+
+  const handleResetPreferences = () => {
+    try {
+      localStorage.removeItem(FILTER_SORT_STORAGE_KEY)
+    } catch {
+      // ignore
+    }
+    setCompletedFilter('all')
+    setPriorityFilter('all')
+    setSortBy('newest')
   }
 
   const filteredAndSortedTasks = useMemo(() => {
@@ -133,7 +148,9 @@ function App() {
   if (loading) {
     return (
       <AppLayout>
-        <p>Loading tasks...</p>
+        <p role='status' aria-live='polite'>
+          Loading tasks...
+        </p>
       </AppLayout>
     )
   }
@@ -206,9 +223,26 @@ function App() {
           </div>
         </div>
 
+        <div className='mb-3 flex items-center justify-between gap-2'>
+          <p className='text-sm text-gray-600' role='status' aria-live='polite'>
+            {filteredAndSortedTasks.length === 1
+              ? '1 task'
+              : `${filteredAndSortedTasks.length} tasks`}
+          </p>
+          <button
+            type='button'
+            onClick={handleResetPreferences}
+            className='text-sm font-medium text-danger-800 focus:outline-none focus-visible:ring-1 focus-visible:ring-danger-300 focus-visible:ring-offset-1 rounded'
+            aria-label='Reset filter and sort preferences to default'
+          >
+            Reset preferences
+          </button>
+        </div>
+
         <TaskList
           tasks={filteredAndSortedTasks}
           onToggleComplete={handleToggleComplete}
+          onUpdate={handleUpdateTask}
           onDelete={handleDeleteTask}
         />
       </div>

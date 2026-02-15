@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 
-type ButtonVariant = 'primary' | 'secondary' | 'danger';
+type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success';
 
 interface ButtonProps {
   children: ReactNode;
@@ -21,6 +21,8 @@ const variantClasses: Record<ButtonVariant, string> = {
     'border border-primary-300 bg-white text-primary-800 hover:bg-primary-50 hover:border-primary-400 focus:ring-primary-400',
   danger:
     'border border-danger-400 bg-danger-100 text-danger-800 hover:bg-danger-200 hover:border-danger-500 focus:ring-danger-500',
+  success:
+    'border border-accent-400 bg-white text-accent-800 hover:bg-accent-50 hover:border-accent-500 focus:ring-accent-500',
 };
 
 export function Button({
