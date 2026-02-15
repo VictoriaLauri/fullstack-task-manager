@@ -15,13 +15,45 @@ type SortBy = 'priority' | 'newest' | 'oldest'
 
 const PRIORITY_RANK: Record<Priority, number> = { high: 3, medium: 2, low: 1 }
 
+const FILTER_SORT_STORAGE_KEY = 'task-list-filter-sort'
+
+const VALID_COMPLETED: CompletedFilter[] = ['all', 'active', 'completed']
+const VALID_PRIORITY: PriorityFilter[] = ['all', 'high', 'medium', 'low']
+const VALID_SORT: SortBy[] = ['priority', 'newest', 'oldest']
+
+function readFilterSortFromStorage(): {
+  completedFilter: CompletedFilter
+  priorityFilter: PriorityFilter
+  sortBy: SortBy
+} {
+  try {
+    const raw = localStorage.getItem(FILTER_SORT_STORAGE_KEY)
+    if (!raw) return { completedFilter: 'all', priorityFilter: 'all', sortBy: 'newest' }
+    const parsed = JSON.parse(raw) as Record<string, unknown>
+    const completedFilter = VALID_COMPLETED.includes(parsed.completedFilter as CompletedFilter)
+      ? (parsed.completedFilter as CompletedFilter)
+      : 'all'
+    const priorityFilter = VALID_PRIORITY.includes(parsed.priorityFilter as PriorityFilter)
+      ? (parsed.priorityFilter as PriorityFilter)
+      : 'all'
+    const sortBy = VALID_SORT.includes(parsed.sortBy as SortBy) ? (parsed.sortBy as SortBy) : 'newest'
+    return { completedFilter, priorityFilter, sortBy }
+  } catch {
+    return { completedFilter: 'all', priorityFilter: 'all', sortBy: 'newest' }
+  }
+}
+
 function App() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [completedFilter, setCompletedFilter] = useState<CompletedFilter>('all')
-  const [priorityFilter, setPriorityFilter] = useState<PriorityFilter>('all')
-  const [sortBy, setSortBy] = useState<SortBy>('newest')
+  const [completedFilter, setCompletedFilter] = useState<CompletedFilter>(() =>
+    readFilterSortFromStorage().completedFilter,
+  )
+  const [priorityFilter, setPriorityFilter] = useState<PriorityFilter>(() =>
+    readFilterSortFromStorage().priorityFilter,
+  )
+  const [sortBy, setSortBy] = useState<SortBy>(() => readFilterSortFromStorage().sortBy)
 
   // Fetch tasks on mount
   useEffect(() => {
@@ -36,6 +68,18 @@ function App() {
       }
     })()
   }, [])
+
+  // Persist filter/sort to localStorage so they survive refresh
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        FILTER_SORT_STORAGE_KEY,
+        JSON.stringify({ completedFilter, priorityFilter, sortBy }),
+      )
+    } catch {
+      // Private mode or quota exceeded; ignore
+    }
+  }, [completedFilter, priorityFilter, sortBy])
 
   const handleAddTask = async (newTask: NewTask) => {
     const task = await createTask(newTask)
