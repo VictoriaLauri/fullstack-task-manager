@@ -68,8 +68,8 @@ export function AddTaskForm({ onSubmit }: AddTaskFormProps) {
             value={priority}
             onChange={(e) => setPriority(e.target.value as Priority)}
             options={PRIORITY_OPTIONS}
-            label="Priority"
-            ariaLabel="Priority"
+            label="Task Priority"
+            ariaLabel="Task Priority"
             required
           />
         </div>

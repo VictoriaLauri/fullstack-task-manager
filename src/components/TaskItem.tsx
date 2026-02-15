@@ -25,7 +25,7 @@ export function TaskItem({ task, onToggleComplete, onDelete }: TaskItemProps) {
         {task.title}
       </p>
       <div className="mt-3 flex flex-wrap items-center justify-end gap-2 border-t border-gray-200 pt-3">
-        <PriorityBadge priority={task.priority} />
+        <PriorityBadge priority={task.priority} completed={task.completed} />
         <Button
           variant="secondary"
           onClick={() => onToggleComplete(task)}

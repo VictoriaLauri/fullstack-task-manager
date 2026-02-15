@@ -1,9 +1,10 @@
-// PriorityBadge — small pill/chip showing task priority. Theme colours: low (accent), medium (primary), high (danger).
+// PriorityBadge — small pill/chip showing task priority, or grey "Completed" when task is done.
 
 import type { Priority } from '../types';
 
 interface PriorityBadgeProps {
   priority: Priority;
+  completed?: boolean;
 }
 
 const priorityClasses: Record<Priority, string> = {
@@ -12,15 +13,27 @@ const priorityClasses: Record<Priority, string> = {
   high: 'border border-danger-400 bg-danger-100 text-danger-800',
 };
 
+const completedClasses = 'border border-gray-300 bg-gray-100 text-gray-700';
+
 const labels: Record<Priority, string> = {
   low: 'Low',
   medium: 'Medium',
   high: 'High',
 };
 
-export function PriorityBadge({ priority }: PriorityBadgeProps) {
-  const label = labels[priority];
+export function PriorityBadge({ priority, completed = false }: PriorityBadgeProps) {
+  if (completed) {
+    return (
+      <span
+        className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${completedClasses}`}
+        aria-label="Completed"
+      >
+        Completed
+      </span>
+    );
+  }
 
+  const label = labels[priority];
   return (
     <span
       className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${priorityClasses[priority]}`}

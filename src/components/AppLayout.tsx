@@ -20,7 +20,7 @@ export function AppLayout({ children }: AppLayoutProps) {
       </a>
 
       <header className="border-b border-gray-200 bg-white px-4 py-4 sm:px-6">
-        <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl">
+        <h1 className="text-center text-xl font-semibold text-gray-900 sm:text-2xl">
           Task Manager
         </h1>
       </header>
