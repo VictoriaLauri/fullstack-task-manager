@@ -8,9 +8,10 @@ A full-stack **Task Manager** with a React/TypeScript frontend and Node.js/Expre
 
 ## Screenshots
 
-### Main view
+### Desktop view
 
-![Task list overview](./assets/app-overview.png)
+![Start Screen](./assets/desktop_version_start.jpg)
+![Desktop Screen After Reset](./assets/desktop_version_reset.jpg)
 
 ### Filters and list
 
