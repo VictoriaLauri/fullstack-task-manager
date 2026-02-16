@@ -12,14 +12,16 @@ A full-stack **Task Manager** with a React/TypeScript frontend and Node.js/Expre
 
 | Start Screen                                                                 | Desktop Screen After Reset                                                 |
 | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| !Start Screen](./assets/desktop_version_start.jpg)                           | ![Desktop Screen After Reset](./assets/desktop_version_reset.jpg)          |
+| ![Start Screen](./assets/desktop_version_start.jpg)                          | ![Desktop Screen After Reset](./assets/desktop_version_reset.jpg)          |
 
 
-### Filters and list
+### Mobile View
 
-![Filters and task list](./assets/filters-list.png)
+| When Filtered                                         | When Editing                                      | When Sorted                                       |
+| ----------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| ![When Filtered ](./assets/mobile_version_filter.jpg) | ![When Editing](./assets/mobile_version_edit.jpg) | ![When Sorted](./assets/mobile_version_sort.jpg)  |
 
-*Add your screengrabs to the `assets/` folder as `app-overview.png` and `filters-list.png`, or update the paths above to match your filenames.*
+
 
 ---
 
@@ -43,6 +45,12 @@ A full-stack **Task Manager** with a React/TypeScript frontend and Node.js/Expre
 - **Frontend:** React 18, TypeScript, Vite, Tailwind CSS v4  
 - **Backend:** Node.js, Express  
 - **Node:** 22.22.0 (see `.nvmrc`)
+
+---
+
+## Context
+
+This repo is a completed technical test. The starting point was a minimal Express backend with basic CRUD routes and an in-memory task list; the frontend was only partly wired up. The brief was to extend both backend and frontend: add a priority feature, filtering and sorting, improve validation and persistence, then build out the React UI, while keeping the app accessible and usable. The result is the full-stack Task Manager presented in this repo.
 
 ---
 
